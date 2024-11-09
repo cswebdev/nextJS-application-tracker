@@ -1,5 +1,5 @@
 import { Application } from "@/app/types/types";
-import StatusDropdown from "../StatusDropdown/StatusDropdown";
+import StatusDropdownMenu from "../StatusDropdown/StatusDropdownMenu";
 
 interface ApplicationItemProps {
    application: Application;
@@ -52,10 +52,10 @@ export default function ApplicationItem({ application }: ApplicationItemProps) {
 
             {/* Status Column */}
             <div className="col-span-1 flex justify-end">
-               <button className="bg-neutral-600 text-white text-sm font-semibold rounded-md px-4 py-2 text-center w-full cursor-default">
+               <div className="w-full">
                   {/* {application.status.toUpperCase()} */}
-                  <StatusDropdown application={application} />
-               </button>
+                  <StatusDropdownMenu application={application} />
+               </div>
             </div>
          </div>
       </div>

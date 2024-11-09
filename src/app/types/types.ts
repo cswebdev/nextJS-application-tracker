@@ -5,12 +5,6 @@ export type Application = {
    date: Date;
    company: string;
    position: string;
-   status:
-      | "applied"
-      | "interview"
-      | "offer"
-      | "accepted"
-      | "waiting"
-      | "rejected";
+   status: string;
    details?: string;
 };
