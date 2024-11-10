@@ -11,7 +11,7 @@ export default function ApplicationItem({ application }: ApplicationItemProps) {
          {/* Header Section */}
          <div className="flex items-center justify-between mb-4">
             <div className="flex items-center rounded-md py-1">
-               <h3 className="font-bold mr-4 text-2xl bg-neutral-600 text-white px-2 rounded-md">
+               <h3 className="font-bold mr-4 text-2xl bg-yellow-300 text-black px-2 rounded-md">
                   {application.company}
                </h3>
                <div>{application.position}</div>

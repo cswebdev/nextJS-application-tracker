@@ -8,10 +8,14 @@ interface ApplicationListProps {
 export default function ApplicationList({
    applications,
 }: ApplicationListProps) {
+   const sortedApplications = [...applications].sort(
+      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+   );
+
    return (
       <>
          <div className="pb-10">
-            {applications.map((application) => (
+            {sortedApplications.map((application) => (
                <ApplicationItem
                   key={application.id}
                   application={application}
