@@ -28,9 +28,9 @@ export const Sidebar = () => {
                   <div className="my-1 flex text-lg">
                      Current applications: {dummyData.length}
                   </div>
-                  <button className="mt-8 rounded-md px-4 py-2 font-bold ring-2 ring-white">
+                  {/* <button className="mt-8 rounded-md px-4 py-2 font-bold ring-2 ring-white">
                      Logout
-                  </button>
+                  </button> */}
                </div>
             </div>
          </div>
