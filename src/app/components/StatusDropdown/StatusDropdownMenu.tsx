@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
 import { Application } from "@/app/types/types";
-import ApplicationItem from "../ApplicationTracker/ApplicationItem";
 
 interface ApplicationStatusProps {
    application: Application;
@@ -24,6 +23,7 @@ export default function StatusDropdownMenu({
       application.status
    );
    const [isOpen, setIsOpen] = useState(false);
+   const [error, setError] = useState<string | null>(null);
 
    const toggleMenu = () => {
       setIsOpen((prev) => !prev);
@@ -48,8 +48,30 @@ export default function StatusDropdownMenu({
 
    // Testing render of applicationStatus on change
    useEffect(() => {
-      console.log(applicationStatus);
+      console.log("Updated application status:", applicationStatus);
    }, [applicationStatus]);
+
+   const handleStatusChange = async (newStatus: string) => {
+      setError(null);
+      try {
+         const response = await fetch(`/api/applications/${application.id}`, {
+            method: "PUT",
+            headers: {
+               "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ status: newStatus }),
+         });
+         if (response.ok) {
+            setApplicationStatus(newStatus);
+            setIsOpen(false); // Close the dropdown
+         } else {
+            const data = await response.json();
+            setError(data.error || "Failed to update application status");
+         }
+      } catch (error) {
+         setError("An error occurred while updating the application status");
+      }
+   };
 
    return (
       <div className="relative">
@@ -73,10 +95,7 @@ export default function StatusDropdownMenu({
                      <div
                         key={status}
                         className="cursor-pointer px-4 py-2 text-gray-700 hover:bg-gray-100"
-                        onClick={() => {
-                           setApplicationStatus(status);
-                           setIsOpen(false);
-                        }}
+                        onClick={() => handleStatusChange(status)}
                      >
                         {status.toUpperCase()}
                      </div>
@@ -84,6 +103,7 @@ export default function StatusDropdownMenu({
                </div>
             </div>
          )}
+         {error && <p className="text-red-600 mt-2">{error}</p>}
       </div>
    );
 }

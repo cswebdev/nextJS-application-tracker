@@ -1,9 +1,18 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { dummyData } from "@/data/dummyData";
-import ApplicationList from "./components/ApplicationTracker/ApplicationList";
-import { Sidebar } from "./components/sidebar";
+// import { dummyData } from "@/data/dummyData";
+// import ApplicationList from "./components/ApplicationTracker/ApplicationList";
+// import { Sidebar } from "./components/sidebar";
+
+import prisma from "@/lib/prisma";
+
+export const getServerSideProps = async () => {
+   const application = await prisma.Application.findMany();
+   console.log({ application });
+
+   return { props: { application } };
+};
 
 const geistSans = localFont({
    src: "./fonts/GeistVF.woff",
@@ -31,19 +40,6 @@ export default function RootLayout({
          <body
             className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen overflow-hidden`}
          >
-            <section className="grid grid-cols-5 h-full max-h-screen">
-               {/* Sidebar */}
-               <div className="flex justify-start bg-slate-200 col-span-1 h-full">
-                  <Sidebar />
-               </div>
-
-               {/* Application List */}
-               <div className="col-span-4 max-h-screen overflow-hidden">
-                  <div className="h-full overflow-y-auto">
-                     <ApplicationList applications={dummyData} />
-                  </div>
-               </div>
-            </section>
             {children}
          </body>
       </html>

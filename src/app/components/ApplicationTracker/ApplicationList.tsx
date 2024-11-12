@@ -9,7 +9,8 @@ export default function ApplicationList({
    applications,
 }: ApplicationListProps) {
    const sortedApplications = [...applications].sort(
-      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+      (a, b) =>
+         new Date(b.dateApplied).getTime() - new Date(a.dateApplied).getTime()
    );
 
    return (

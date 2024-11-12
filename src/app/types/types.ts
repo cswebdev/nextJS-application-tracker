@@ -1,8 +1,7 @@
 export type Application = {
-   //temporary id as number. change to string once uuid
-   id: number;
+   id: string;
    url: string;
-   date: Date;
+   dateApplied: Date;
    company: string;
    position: string;
    status: string;
