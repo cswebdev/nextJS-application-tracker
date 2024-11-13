@@ -73,10 +73,31 @@ export default function StatusDropdownMenu({
       }
    };
 
+   const getStatusColor = (status: string) => {
+      switch (status) {
+         case "applied":
+            return "bg-blue-600";
+         case "interview":
+            return "bg-yellow-500";
+         case "offer":
+            return "bg-green-600";
+         case "accepted":
+            return "bg-green-800";
+         case "waiting":
+            return "bg-orange-500";
+         case "rejected":
+            return "bg-red-600";
+         default:
+            return "bg-gray-400";
+      }
+   };
+
    return (
       <div className="relative">
          <button
-            className="bg-neutral-600 text-white text-sm font-semibold rounded-md px-4 py-2 text-center w-full cursor-pointer"
+            className={`${getStatusColor(
+               applicationStatus
+            )} text-white text-sm font-semibold rounded-md px-4 py-2 text-center w-full cursor-pointer`}
             onClick={toggleMenu}
             id="menu-button"
          >
