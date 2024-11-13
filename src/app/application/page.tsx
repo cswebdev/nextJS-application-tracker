@@ -7,7 +7,7 @@ const ApplicationsPage = async () => {
    const applications: Application[] = await prisma.Application.findMany();
 
    return (
-      <div>
+      <div className="max-h-screen mt-10">
          <ApplicationList applications={applications} />
       </div>
    );

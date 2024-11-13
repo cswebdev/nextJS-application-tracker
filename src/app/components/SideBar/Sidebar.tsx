@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import ApplicationForm from "../ApplicationForm/ApplicationForm";
 
 interface SidebarProps {
    totalApplications?: number;

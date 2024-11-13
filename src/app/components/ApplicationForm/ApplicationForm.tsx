@@ -1,9 +1,10 @@
 "use client";
 
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const ApplicationForm = () => {
+   const router = useRouter();
    const [url, setUrl] = useState("");
    const [company, setCompany] = useState("");
    const [position, setPosition] = useState("");
@@ -27,17 +28,19 @@ const ApplicationForm = () => {
             },
             body: JSON.stringify({ url, company, position, status, details }),
          });
+
          if (response.ok) {
             setSuccess(true);
             setUrl("");
             setCompany("");
             setPosition("");
             setDetails("");
+            // Redirect to the homepage after a successful submission
+            router.push("/");
          } else {
             const data = await response.json();
             setError(data.error || "Failed to submit application");
          }
-         // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (error) {
          setError("An error occurred while submitting the application");
       } finally {
@@ -144,9 +147,6 @@ const ApplicationForm = () => {
                   disabled={loading}
                >
                   {loading ? "Submitting..." : "Submit Application"}
-               </button>
-               <button>
-                  <Link href="/">Home</Link>
                </button>
             </div>
          </form>
