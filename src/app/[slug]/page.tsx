@@ -11,7 +11,6 @@ export default function DynamicPage() {
       <div className="h-full overflow-y-auto">
          {slug === "application" && <ApplicationsPage />}
          {slug === "submit-application" && <SubmitApplicationPage />}
-         {/* Add additional conditions as needed */}
       </div>
    );
 }

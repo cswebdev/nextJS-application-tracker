@@ -1,5 +1,3 @@
-// src/app/page.tsx
-
 import ApplicationsPage from "./application/page";
 
 export default function Home() {
