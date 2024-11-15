@@ -35,7 +35,7 @@ const ApplicationForm = () => {
             setCompany("");
             setPosition("");
             setDetails("");
-            // Redirect to the homepage after a successful submission
+
             router.push("/");
          } else {
             const data = await response.json();

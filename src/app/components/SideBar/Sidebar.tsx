@@ -1,6 +1,9 @@
 "use client";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import NavLinkMenu from "./SideBarNavMenu";
+import { Home, LogOutIcon, Settings, UserCircle } from "lucide-react";
+import logo from "../../../../public/pie-chart-svgrepo-com.svg";
 
 interface SidebarProps {
    totalApplications?: number;
@@ -39,24 +42,47 @@ const Sidebar = ({ totalApplications }: SidebarProps) => {
    }, [totalApplications]);
 
    return (
-      <div className="h-full w-full bg-blue-500">
-         <div className="ml-8 flex h-full flex-col text-white">
-            <div className="my-10 flex h-full flex-col align-middle">
+      <div className="h-full w-full bg-neutral-50 overflow-hidden ">
+         <section></section>
+         <div className="ml-8 flex h-full flex-col text-neutral-700 font-light ">
+            <div className="my-10 flex h-full flex-col  justify-center">
                <Link href="/" className="my-2 pl-1 text-2xl">
-                  Home
+                  <div className="flex flex-row items-center">
+                     <span>
+                        <Home />
+                     </span>
+                     <h1 className="pl-2">Home</h1>
+                  </div>
                </Link>
-               <Link href="/reports" className="my-2 pl-1 text-2xl">
-                  Reports
-               </Link>
-               <Link href="/account_settings" className="my-2 pl-1 text-2xl">
-                  Settings
-               </Link>
-               <Link href="/help_support" className="my-2 pl-1 text-2xl">
-                  Help & Support
-               </Link>
-               <Link href="/about" className="my-2 pl-1 text-2xl">
-                  About
-               </Link>
+               {/* how do I change this sections height depending on if NavLinkMenu is active and expanded?  */}
+               <section className="h-1/4">
+                  <NavLinkMenu />
+               </section>
+               <section className="">
+                  <div className="flex flex-row items-center mb-2">
+                     <span>
+                        <UserCircle />
+                     </span>
+                     <h2 className="text-2xl pl-2">Account</h2>
+                  </div>
+                  <div className="ml-9">
+                     <div className="flex flex-row items-center mb-2">
+                        <span>
+                           <Settings size={18} />
+                        </span>
+                        <Link href="settings" className="pl-2">
+                           Settings
+                        </Link>
+                     </div>
+                     <div className="flex flex-row items-center">
+                        <span>
+                           <LogOutIcon size={18} />
+                        </span>
+                        <div className="pl-2">Logout</div>
+                     </div>
+                  </div>
+               </section>
+
                <div className="my-10">
                   <div className="my-1 flex text-lg">
                      Total applications: {totalApps}
@@ -64,7 +90,7 @@ const Sidebar = ({ totalApplications }: SidebarProps) => {
                   <button className="mt-2">
                      <Link
                         href="/submit-application"
-                        className="mt-4 ring-2 ring-white px-4 py-2 rounded-md"
+                        className="mt-4 ring-2 ring-neutral-600 px-4 py-2 rounded-md"
                      >
                         Submit application
                      </Link>

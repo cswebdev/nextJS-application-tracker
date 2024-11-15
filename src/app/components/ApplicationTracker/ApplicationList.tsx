@@ -15,7 +15,7 @@ export default function ApplicationList({
 
    return (
       <>
-         <div className="pb-10">
+         <div className=" w-full pb-1">
             {sortedApplications.map((application) => (
                <ApplicationItem
                   key={application.id}
