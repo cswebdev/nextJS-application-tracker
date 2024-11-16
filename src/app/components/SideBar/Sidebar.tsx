@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import NavLinkMenu from "./SideBarNavMenu";
 import { Home, LogOutIcon, Settings, UserCircle } from "lucide-react";
-import WebLogo from "../../../../public/pie-chart-svgrepo-com.svg";
+// import WebLogo from "../../../../public/pie-chart-svgrepo-com.svg";
 
 interface SidebarProps {
    totalApplications?: number;
@@ -50,46 +50,12 @@ const Sidebar = ({ totalApplications }: SidebarProps) => {
                </div>
                <h1>Website Title</h1>
             </section> */}
-            <div className="h-full w-full bg-red-50 overflow-hidden ">
+            <div className="h-full w-full bg-neutral-50 overflow-hidden ">
                <div className="ml-8 flex h-full flex-col text-neutral-700 font-light ">
-                  <div className="my-10 flex h-full flex-col  justify-center">
-                     <Link href="/" className="my-2 pl-1 text-2xl">
-                        <div className="flex flex-row items-center">
-                           <span>
-                              <Home />
-                           </span>
-                           <h1 className="pl-2">Home</h1>
-                        </div>
-                     </Link>
-                     {/* how do I change this sections height depending on if NavLinkMenu is active and expanded?  */}
-                     <section className="h-1/4">
+                  <div className="my-10 flex h-full flex-col ">
+                     <section className="">
                         <NavLinkMenu />
                      </section>
-                     <section className="">
-                        <div className="flex flex-row items-center mb-2">
-                           <span>
-                              <UserCircle />
-                           </span>
-                           <h2 className="text-2xl pl-2">Account</h2>
-                        </div>
-                        <div className="ml-9">
-                           <div className="flex flex-row items-center mb-2">
-                              <span>
-                                 <Settings size={18} />
-                              </span>
-                              <Link href="settings" className="pl-2">
-                                 Settings
-                              </Link>
-                           </div>
-                           <div className="flex flex-row items-center">
-                              <span>
-                                 <LogOutIcon size={18} />
-                              </span>
-                              <div className="pl-2">Logout</div>
-                           </div>
-                        </div>
-                     </section>
-
                      <div className="my-10">
                         <div className="my-1 flex text-lg">
                            Total applications: {totalApps}

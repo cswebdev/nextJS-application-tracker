@@ -3,6 +3,7 @@
 import { useParams } from "next/navigation";
 import ApplicationsPage from "../application/page";
 import SubmitApplicationPage from "../submit-application/page";
+import Dashboard from "@/pages/Dashboard/page";
 
 export default function DynamicPage() {
    const { slug } = useParams() as { slug: string };
@@ -11,6 +12,7 @@ export default function DynamicPage() {
       <div className="h-full overflow-y-auto">
          {slug === "application" && <ApplicationsPage />}
          {slug === "submit-application" && <SubmitApplicationPage />}
+         {slug === "dashboard" && <Dashboard />}
       </div>
    );
 }

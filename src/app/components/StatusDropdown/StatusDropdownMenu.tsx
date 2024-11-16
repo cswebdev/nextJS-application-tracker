@@ -12,7 +12,7 @@ const statusOptions = [
    "interview",
    "offer",
    "accepted",
-   "waiting",
+   "pending",
    "rejected",
 ];
 
@@ -83,7 +83,7 @@ export default function StatusDropdownMenu({
             return "bg-green-600";
          case "accepted":
             return "bg-green-800";
-         case "waiting":
+         case "pending":
             return "bg-orange-500";
          case "rejected":
             return "bg-red-600";
