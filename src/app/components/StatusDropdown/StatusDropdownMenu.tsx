@@ -68,6 +68,7 @@ export default function StatusDropdownMenu({
             const data = await response.json();
             setError(data.error || "Failed to update application status");
          }
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (error) {
          setError("An error occurred while updating the application status");
       }

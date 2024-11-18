@@ -7,6 +7,14 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum DateRange {
+  ONE_DAY
+  ONE_WEEK
+  ONE_MONTH
+  SIX_MONTHS
+  ONE_YEAR
+}
+
 model Application {
   id          String   @id @default(uuid())
   url         String
@@ -15,4 +23,15 @@ model Application {
   status      String
   details     String?
   dateApplied DateTime @default(now())
+  trackedRange String?
+  userId      String?       // Foreign key to User
+  user        User?         @relation(fields: [userId], references: [id]) // Relation to User
+}
+
+model User {
+  id            String   @id @default(uuid())
+  email         String   @unique
+  name          String
+  selectedRange String? // Tracks the user's current date range preference
+  applications  Application[] // Relation to Application
 }

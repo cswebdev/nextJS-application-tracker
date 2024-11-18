@@ -38,6 +38,7 @@ export default function NavLinkMenu() {
    };
 
    // keeping this here to potentially use icon fill for active link styling
+   // eslint-disable-next-line @typescript-eslint/no-unused-vars
    const isLinkActiveIcon = (linkPath: string) => {
       return pathname === linkPath;
    };

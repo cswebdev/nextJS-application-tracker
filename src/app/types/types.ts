@@ -6,4 +6,5 @@ export type Application = {
    position: string;
    status: string;
    details?: string;
+   dateRange: string;
 };

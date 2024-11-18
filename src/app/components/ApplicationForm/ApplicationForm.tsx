@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { useRouter } from "next/navigation";
@@ -119,7 +120,7 @@ const ApplicationForm = () => {
                >
                   <option value="">Please choose</option>
                   <option value="applied">applied</option>
-                  <option value="waiting">waiting</option>
+                  <option value="pending">pending</option>
                </select>
             </div>
             <div className="mb-4">

@@ -34,9 +34,11 @@ const ApplicationItem = ({ application }: ApplicationItemProps) => {
             const data = await response.json();
             setError(data.error || "Failed to update application details");
          }
-      } catch (error) {
+         // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      } catch (e) {
          setError("An error occurred while updating application details");
       }
+     
    };
 
    return (

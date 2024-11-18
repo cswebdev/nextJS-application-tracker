@@ -6,10 +6,16 @@ interface DashboardItemCardProps {
    totalApplications?: number;
 }
 
-const statusOptions = ["applied", "pending", "interview", "accepted"];
+const statusOptions = [
+   "pending",
+   "applied",
+   "interview",
+   "accepted",
+   "rejected",
+];
 
 const DashboardItemCard = ({ totalApplications }: DashboardItemCardProps) => {
-   const [totalApps, setTotalApps] = useState<number>(totalApplications || 0);
+   const [, setTotalApps] = useState<number>(totalApplications || 0);
    const [statusCounts, setStatusCounts] = useState<Record<string, number>>({});
    const [error, setError] = useState<string | null>(null);
    const [loading, setLoading] = useState<boolean>(true);
@@ -55,6 +61,25 @@ const DashboardItemCard = ({ totalApplications }: DashboardItemCardProps) => {
       fetchStatusCounts();
    }, []);
 
+   const getStatusColor = (status: string): string => {
+      switch (status) {
+         case "applied":
+            return "#2563EB"; // Blue
+         case "interview":
+            return "#F59E0B"; // Yellow
+         case "offer":
+            return "#16A34A"; // Green
+         case "accepted":
+            return "#15803D"; // Dark Green
+         case "pending":
+            return "#F97316"; // Orange
+         case "rejected":
+            return "#DC2626"; // Red
+         default:
+            return "#9CA3AF"; // Gray
+      }
+   };
+
    return (
       <div className="flex justify-center items-center content-center ">
          {loading ? (
@@ -69,11 +94,12 @@ const DashboardItemCard = ({ totalApplications }: DashboardItemCardProps) => {
                   ) : error ? (
                      <div className="text-red-500">{error}</div>
                   ) : (
-                     <div className="grid grid-cols-4 gap-5">
+                     <div className="grid grid-cols-5 gap-4">
                         {statusOptions.map((status) => (
                            <div
                               key={status}
-                              className="pb-6 py-2 px-20 rounded-md bg-white ring-1 ring-gray-200 flex flex-col items-center content-center gap-y-2 border-t-8 border-t-fuchsia-500"
+                              className="pb-6 py-2 px-16 rounded-md bg-white ring-1 ring-gray-200 flex flex-col items-center content-center gap-y-2 border-t-8"
+                              style={{ borderTopColor: getStatusColor(status) }}
                            >
                               <p className="font-light text-4xl">
                                  {statusCounts[status] || 0}
