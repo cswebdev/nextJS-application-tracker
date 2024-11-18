@@ -4,6 +4,7 @@ import DateRangeLargeBtn from "@/app/components/DateRangeLargeBtn/DateRangeLarge
 
 export default function Dashboard() {
    const [totalApplications, setTotalApplications] = useState<number>(0);
+   const [activeDateRange, setActiveDateRange] = useState<string>(""); // Added state for active date range
 
    useEffect(() => {
       const fetchTotalApplications = async () => {
@@ -24,30 +25,32 @@ export default function Dashboard() {
       fetchTotalApplications();
    }, []);
 
+   // Handle selection of a date range
+   const handleDateRangeSelect = (selectedOption: string) => {
+      setActiveDateRange(selectedOption); // Set the selected date range as active
+   };
+
    return (
       <>
          <header className="p-4">
-            <div className="w-full rounded-md flex flex-col ">
-               <section className="flex items-center justify-center mx-auto ">
+            <div className="w-full rounded-md flex flex-col">
+               <section className="flex items-center justify-center mx-auto">
                   <DashboardItemCard totalApplications={totalApplications} />
                </section>
                <section className="mt-12 ml-30 flex items-center ml-20">
                   <div className="flex py-3 px-8 ring-2 bg-white/50 ring-neutral-200/50 rounded-md">
-                     <p className="font-semibold text-md text-center  text-neutral-500 flex justify-center align-middle items-center">
+                     <p className="font-semibold text-md text-center text-neutral-500 flex justify-center align-middle items-center">
                         Total number of applications:{" "}
-                        <span
-                           className={`font-extrabold text-xl  text-purple-500 py-1  px-1 rounded-md`}
-                        >
+                        <span className="font-extrabold text-xl text-purple-500 py-1 px-1 rounded-md">
                            {totalApplications}{" "}
                         </span>
                      </p>
                   </div>
                </section>
-               <section className="flex align-middle items-center ml-20 mt-0">
+               <section className="flex align-middle items-center ml-20 mt-8">
                   <DateRangeLargeBtn
-                     onOptionSelect={(selectedOption: string) => {
-                        console.log("Selected option:", selectedOption);
-                     }}
+                     onOptionSelect={handleDateRangeSelect}
+                     active={activeDateRange} // Pass active state to DateRangeLargeBtn
                   />
                </section>
             </div>
