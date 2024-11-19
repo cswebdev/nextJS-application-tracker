@@ -27,7 +27,7 @@ export default function Dashboard() {
 
    // Handle selection of a date range
    const handleDateRangeSelect = (selectedOption: string) => {
-      setActiveDateRange(selectedOption); // Set the selected date range as active
+      setActiveDateRange(selectedOption);
    };
 
    return (
@@ -50,7 +50,7 @@ export default function Dashboard() {
                <section className="flex align-middle items-center ml-20 mt-8">
                   <DateRangeLargeBtn
                      onOptionSelect={handleDateRangeSelect}
-                     active={activeDateRange} // Pass active state to DateRangeLargeBtn
+                     active={activeDateRange}
                   />
                </section>
             </div>
