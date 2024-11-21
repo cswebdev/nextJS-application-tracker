@@ -6,5 +6,12 @@ export type Application = {
    position: string;
    status: string;
    details?: string;
-   dateRange: string;
+   dateRange?: string; // Make optional to match potential undefined values
+};
+
+export type User = {
+   id: string;
+   email: string;
+   displayName?: string; // Optional because displayName might not always be provided
+   password?: string; // Optional because some users (Google sign-in) won't have passwords
 };

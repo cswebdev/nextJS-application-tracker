@@ -23,15 +23,18 @@ model Application {
   status      String
   details     String?
   dateApplied DateTime @default(now())
-  trackedRange String?
-  userId      String?       // Foreign key to User
-  user        User?         @relation(fields: [userId], references: [id]) // Relation to User
+  trackedRange DateRange?  // Use the enum for clarity
+  userId      String?      // Foreign key to User
+  user        User?        @relation(fields: [userId], references: [id]) // Relation to User
 }
 
 model User {
-  id            String   @id @default(uuid())
+  id            String   @id  // Firebase UID will serve as the primary key
   email         String   @unique
-  name          String
-  selectedRange String? // Tracks the user's current date range preference
-  applications  Application[] // Relation to Application
+  password      String   // Ensure this is in your schema
+  displayName   String?
+  selectedRange String?   // Tracks the user's current date range preference
+  applications  Application[]  // Relation to Application
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 }
