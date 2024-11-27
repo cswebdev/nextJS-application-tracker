@@ -4,12 +4,15 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
+// Define the status options (these should match the updated status options array)
+const statusOptions = ["APPLIED", "INTERVIEW", "OFFER", "REJECTED", "PENDING"];
+
 const ApplicationForm = () => {
    const router = useRouter();
    const [url, setUrl] = useState("");
    const [company, setCompany] = useState("");
    const [position, setPosition] = useState("");
-   const [status, setStatus] = useState("");
+   const [status, setStatus] = useState(statusOptions[0]); // Default to "APPLIED"
    const [details, setDetails] = useState("");
    const [loading, setLoading] = useState(false);
    const [error, setError] = useState<string | null>(null);
@@ -36,7 +39,7 @@ const ApplicationForm = () => {
             setCompany("");
             setPosition("");
             setDetails("");
-
+            setStatus(statusOptions[0]); // Reset to default "APPLIED"
             router.push("/");
          } else {
             const data = await response.json();
@@ -119,8 +122,11 @@ const ApplicationForm = () => {
                   className="w-full p-2 border rounded-md"
                >
                   <option value="">Please choose</option>
-                  <option value="applied">applied</option>
-                  <option value="pending">pending</option>
+                  {statusOptions.map((statusOption) => (
+                     <option key={statusOption} value={statusOption}>
+                        {statusOption}
+                     </option>
+                  ))}
                </select>
             </div>
             <div className="mb-4">

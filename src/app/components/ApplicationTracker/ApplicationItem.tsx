@@ -38,7 +38,6 @@ const ApplicationItem = ({ application }: ApplicationItemProps) => {
       } catch (e) {
          setError("An error occurred while updating application details");
       }
-     
    };
 
    return (
@@ -84,7 +83,7 @@ const ApplicationItem = ({ application }: ApplicationItemProps) => {
                         <div className="w-full flex flex-row items-center justify-between ring-2 ring-transparent  leading-tight resize-none">
                            <textarea
                               className="w-full h-full text-sm focus-visible:outline-none content-center resize-none leading-tight pl-1 "
-                              value={details}
+                              value={details || ""}
                               onChange={handleDetailsInputChange}
                            />
                         </div>

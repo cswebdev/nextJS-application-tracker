@@ -15,23 +15,39 @@ enum DateRange {
   ONE_YEAR
 }
 
+enum Status {
+  APPLIED
+  INTERVIEW
+  OFFER
+  REJECTED
+  PENDING
+  ACCEPTED
+}
+
 model Application {
-  id          String   @id @default(uuid())
-  url         String
-  company     String
-  position    String
-  status      String
-  details     String?
-  dateApplied DateTime @default(now())
-  trackedRange String?
-  userId      String?       // Foreign key to User
-  user        User?         @relation(fields: [userId], references: [id]) // Relation to User
+  id:           String   @id @default(uuid())
+  url:          String
+  company:      String
+  position:     String
+  status:       Status
+  details:      String?  // Nullable field
+  dateApplied:  DateTime
+  trackedRange: DateRange?
+  createdAt:    DateTime @default(now()) // Automatically set when creating a record
+  updatedAt:    DateTime @updatedAt     // Automatically updated when updating a record
+
+
+
+@@map("application")  // Note the lowercase "application"
+
 }
 
 model User {
   id            String   @id @default(uuid())
   email         String   @unique
-  name          String
-  selectedRange String? // Tracks the user's current date range preference
+  userName      String
+  selectedRange DateRange?
   applications  Application[] // Relation to Application
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
 }

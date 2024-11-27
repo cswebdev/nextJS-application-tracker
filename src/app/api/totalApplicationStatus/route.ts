@@ -1,40 +1,28 @@
-import prisma from "@/lib/prisma";
-import { NextResponse } from "next/server";
+import prisma from "@/lib/prisma"; // Assuming you are using Prisma for data fetching
 
 export async function GET() {
    try {
-      const statuses = [
-         "applied",
-         "interview",
-         "offer",
-         "accepted",
-         "pending",
-         "rejected",
-      ];
+      const statusCounts = await prisma.application.groupBy({
+         by: ["status"],
+         _count: {
+            status: true,
+         },
+      });
 
-      // Batch all count queries using $transaction
-      const counts = await prisma.$transaction(
-         statuses.map((status) =>
-            prisma.application.count({
-               where: { status },
-            })
-         )
+      // Transform data into an object with status as the key
+      const result = statusCounts.reduce<Record<string, number>>(
+         (acc, { status, _count }) => {
+            acc[status] = _count.status;
+            return acc;
+         },
+         {} // Empty object that will be typed as Record<string, number>
       );
 
-      // Create statusCounts object dynamically
-      const statusCounts = statuses.reduce(
-         (acc, status, index) => ({
-            ...acc,
-            [status]: counts[index],
-         }),
-         {}
-      );
-
-      return NextResponse.json(statusCounts, { status: 200 });
+      return new Response(JSON.stringify(result), { status: 200 });
    } catch (error) {
-      console.error("Error fetching status counts:", error);
-      return NextResponse.json(
-         { error: "Failed to fetch status counts" },
+      console.error("Error fetching application status counts:", error);
+      return new Response(
+         JSON.stringify({ error: "Failed to fetch status counts" }),
          { status: 500 }
       );
    }

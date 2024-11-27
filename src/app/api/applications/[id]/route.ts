@@ -1,6 +1,8 @@
 import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
+// Async function to update application status
+
 export async function PUT(
    request: Request,
    { params }: { params: { id: string } }
