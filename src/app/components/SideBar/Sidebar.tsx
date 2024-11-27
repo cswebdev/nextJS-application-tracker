@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import NavLinkMenu from "./SideBarNavMenu";
-import { Home, LogOutIcon, Settings, UserCircle } from "lucide-react";
+// import { Home, LogOutIcon, Settings, UserCircle } from "lucide-react";
 // import WebLogo from "../../../../public/pie-chart-svgrepo-com.svg";
 
 interface SidebarProps {

@@ -37,11 +37,27 @@ export default function NavLinkMenu() {
          : "text-neutral-600 font-light pl-1";
    };
 
+   const isLinkActiveIcon = (linkPath: string) => {
+      if (pathname?.startsWith(linkPath)) {
+         switch (linkPath) {
+            case "/dashboard":
+               return "red"; // Dashboard icon color
+            case "/goals":
+               return "#f4c542"; // Goals (Trophy) icon color
+            case "/analytics":
+               return "#4caf50"; // Analytics icon color
+            default:
+               return "none"; // Default inactive color
+         }
+      }
+      return "none"; // Inactive color
+   };
+
    // keeping this here to potentially use icon fill for active link styling
    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-   const isLinkActiveIcon = (linkPath: string) => {
-      return pathname === linkPath;
-   };
+   // const isLinkActiveIcon = (linkPath: string) => {
+   //    return pathname === linkPath;
+   // };
 
    return (
       <div className="relative h-fit">
@@ -88,8 +104,11 @@ export default function NavLinkMenu() {
                                  "/dashboard"
                               )} mb-5 flex flex-row items-center`}
                            >
-                              <span>
-                                 <Layout size={18} />
+                              <span className={isLinkActiveIcon("/dashboard")}>
+                                 <Layout
+                                    size={18}
+                                    fill={isLinkActiveIcon("/dashboard")}
+                                 />
                               </span>
                               <span className="pl-2">Dashboard</span>
                            </button>
@@ -101,8 +120,11 @@ export default function NavLinkMenu() {
                                  "/goals"
                               )} mb-5 flex flex-row items-center`}
                            >
-                              <span>
-                                 <Trophy size={18} />
+                              <span className={isLinkActiveIcon("/goals")}>
+                                 <Trophy
+                                    size={18}
+                                    fill={isLinkActiveIcon("/goals")}
+                                 />
                               </span>
                               <span className="pl-2">View Goals</span>
                            </button>
@@ -114,8 +136,11 @@ export default function NavLinkMenu() {
                                  "/analytics"
                               )} mb-5 flex flex-row items-center`}
                            >
-                              <span>
-                                 <ChartAreaIcon size={18} />
+                              <span className={isLinkActiveIcon("/analytics")}>
+                                 <ChartAreaIcon
+                                    size={18}
+                                    fill={isLinkActiveIcon("/analytics")}
+                                 />
                               </span>
                               <span className="pl-2">Analytics</span>
                            </button>

@@ -26,13 +26,14 @@ export type Application = {
    trackedRange: DateRange | null;
    createdAt?: Date;
    updatedAt?: Date;
+   userId: string | null; // Allow null here
+   user?: User; // Add relation to User (optional)
 };
 
 // User Type
 export type User = {
    id: string;
    email: string;
-   userName: string;
    selectedRange?: DateRange;
    applications: Application[];
    createdAt: Date;

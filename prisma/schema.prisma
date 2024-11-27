@@ -25,29 +25,27 @@ enum Status {
 }
 
 model Application {
-  id:           String   @id @default(uuid())
-  url:          String
-  company:      String
-  position:     String
-  status:       Status
-  details:      String?  // Nullable field
-  dateApplied:  DateTime
-  trackedRange: DateRange?
-  createdAt:    DateTime @default(now()) // Automatically set when creating a record
-  updatedAt:    DateTime @updatedAt     // Automatically updated when updating a record
+  id           String     @id @default(uuid())
+  url          String
+  company      String
+  position     String
+  status       Status
+  details      String? // Nullable field
+  dateApplied  DateTime
+  trackedRange DateRange?
+  userId       String
+  user         User       @relation("ApplicationToUser", fields: [userId], references: [id]) // Explicitly named relation
+  createdAt    DateTime   @default(now()) // Automatically set when creating a record
+  updatedAt    DateTime   @updatedAt // Automatically updated when updating a record
 
-
-
-@@map("application")  // Note the lowercase "application"
-
+  @@map("application") // Note the lowercase "application"
 }
 
 model User {
-  id            String   @id @default(uuid())
-  email         String   @unique
-  userName      String
+  id            String        @id @default(uuid())
+  email         String        @unique
   selectedRange DateRange?
-  applications  Application[] // Relation to Application
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  applications  Application[] @relation("ApplicationToUser") // Matches the relation name in Application
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
 }

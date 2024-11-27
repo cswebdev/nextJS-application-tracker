@@ -2,8 +2,8 @@
 
 import { useParams } from "next/navigation";
 import ApplicationsPage from "../application/page";
-import Dashboard from "@/pages/Dashboard/page";
-import SubmitApplicationPage from "@/pages/submit-application/page";
+import SubmitApplicationPage from "../submit-application/page";
+import Dashboard from "../Dashboard/page";
 
 export default function DynamicPage() {
    const { slug } = useParams() as { slug: string };
