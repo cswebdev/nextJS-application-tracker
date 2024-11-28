@@ -16,7 +16,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 export default function NavLinkMenu() {
-   const [isOpen, setIsOpen] = useState(false);
+   const [isOpen, setIsOpen] = useState(true);
    const pathname = usePathname();
 
    const toggleMenu = () => {

@@ -2,17 +2,22 @@
 
 const RegisterForm = () => {
    return (
-      <form className="max-w-lg w-full mx-auto p-6">
-         <div className="mb-12">
-            <h3 className="text-3xl font-bold text-black">Create an account</h3>
+      <form className="max-w-lg w-full mx-auto flex flex-col" autoComplete="on">
+         <div className="mb-4">
+            <h1 className="text-2xl font-semibold">Get Started with JobFlow</h1>
+            <h3 className="text-md font-light text-black">Create an account</h3>
          </div>
 
          <div className="mt-8">
-            <label className="text-black text-md block mb-2">Email</label>
+            <label htmlFor="email" className="text-black text-md block mb-2">
+               Email
+            </label>
             <div className="relative flex items-center">
                <input
+                  id="email"
                   name="email"
-                  type="text"
+                  type="email"
+                  autoComplete="email"
                   required
                   className="w-full bg-transparent text-sm text-black border-b border-gray-300 focus:border-yellow-400 px-2 py-3 outline-none"
                   placeholder="Enter email"
@@ -38,7 +43,6 @@ const RegisterForm = () => {
                   >
                      <path
                         fill="none"
-                        // stroke-miterlimit="10"
                         strokeWidth="40"
                         d="M452 444H60c-22.091 0-40-17.909-40-40v-39.446l212.127-157.782c14.17-10.54 33.576-10.54 47.746 0L492 364.554V404c0 22.091-17.909 40-40 40Z"
                         data-original="#000000"
@@ -51,12 +55,17 @@ const RegisterForm = () => {
                </svg>
             </div>
          </div>
+
          <div className="mt-8">
-            <label className="text-black text-md block mb-2">Password</label>
+            <label htmlFor="password" className="text-black text-md block mb-2">
+               Password
+            </label>
             <div className="relative flex items-center">
                <input
+                  id="password"
                   name="password"
                   type="password"
+                  autoComplete="current-password"
                   required
                   className="w-full bg-transparent text-sm text-black border-b border-gray-300 focus:border-yellow-400 px-2 py-3 outline-none"
                   placeholder="Enter password"
@@ -78,18 +87,16 @@ const RegisterForm = () => {
 
          <div className="flex items-center mt-8">
             <input
-               id="remember-me"
-               name="remember-me"
+               id="terms"
+               name="terms"
                type="checkbox"
+               required
                className="h-4 w-4 shrink-0 rounded"
             />
-            <label
-               htmlFor="remember-me"
-               className="text-black ml-3 block text-sm"
-            >
+            <label htmlFor="terms" className="text-black ml-3 block text-sm">
                I accept the{" "}
                <a
-                  href="javascript:void(0);"
+                  href="#"
                   className="text-black font-semibold hover:underline ml-1"
                >
                   Terms and Conditions
@@ -99,7 +106,7 @@ const RegisterForm = () => {
 
          <div className="mt-12">
             <button
-               type="button"
+               type="submit"
                className="w-max shadow-xl py-3 px-6 text-sm text-gray-800 font-semibold rounded-md bg-transparent bg-yellow-400 hover:bg-yellow-500 focus:outline-none"
             >
                Register
@@ -107,7 +114,7 @@ const RegisterForm = () => {
             <p className="text-sm text-black mt-8">
                Already have an account?{" "}
                <a
-                  href="javascript:void(0);"
+                  href="#"
                   className="text-black font-semibold hover:underline ml-1"
                >
                   Login here
@@ -117,4 +124,5 @@ const RegisterForm = () => {
       </form>
    );
 };
+
 export default RegisterForm;
